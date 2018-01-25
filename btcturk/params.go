@@ -1,6 +1,9 @@
 package btcturk
 
-import "strconv"
+import (
+	"fmt"
+	"strconv"
+)
 
 // Transactions Limit
 func (c *Client) Limit(v int) *Client {
@@ -31,7 +34,7 @@ func (c *Client) OrderMethod(orderMethod int) *Client {
 
 // Buy or Sell PricePrecision
 func (c *Client) PricePrecision(v int) *Client {
-	c.params.Add("PricePrecision", strconv.Itoa(v))
+	c.params.Add("PricePrecision", fmt.Sprintf("%03d", v))
 	return c
 }
 
@@ -43,7 +46,7 @@ func (c *Client) Amount(v int) *Client {
 
 // Buy or Sell AmountPrecision
 func (c *Client) AmountPrecision(v int) *Client {
-	c.params.Add("AmountPrecision", strconv.Itoa(v))
+	c.params.Add("AmountPrecision", fmt.Sprintf("%03d", v))
 	return c
 }
 
@@ -55,7 +58,7 @@ func (c *Client) Total(v int) *Client {
 
 // Buy or Sell TotalPrecision
 func (c *Client) TotalPrecision(v int) *Client {
-	c.params.Add("TotalPrecision", strconv.Itoa(v))
+	c.params.Add("TotalPrecision", fmt.Sprintf("%03d", v))
 	return c
 }
 
@@ -67,7 +70,7 @@ func (c *Client) TriggerPrice(v int) *Client {
 
 // Buy or Sell TriggerPricePrecision
 func (c *Client) TriggerPricePrecision(v int) *Client {
-	c.params.Add("TriggerPricePrecision", strconv.Itoa(v))
+	c.params.Add("TriggerPricePrecision", fmt.Sprintf("%03d", v))
 	return c
 }
 
