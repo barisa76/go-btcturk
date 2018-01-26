@@ -49,8 +49,6 @@ func (c *Client) Buy() (OrderType, error) {
 	c.params.Add("OrderType", "0")
 	c.body = strings.NewReader(c.params.Encode())
 
-	fmt.Println(c.params.Encode())
-
 	req, err := c.newRequest("POST", "/api/exchange", c.body)
 	if err := c.auth(req); err != nil {
 		return OrderType{}, err
