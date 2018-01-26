@@ -5,94 +5,65 @@ import (
 	"strconv"
 )
 
-// Transactions Limit
-func (c *Client) Limit(v int) *Client {
-	return addParamsAndReturnClient(c, "limit", v)
-}
+// Limit Transactions
+func (c *Client) Limit(v int) *Client { return c.addParamInt("limit", v) }
 
-// Transactions Offset
-func (c *Client) Offset(v int) *Client {
-	return addParamsAndReturnClient(c, "offest", v)
-}
+// Offset Transactions
+func (c *Client) Offset(v int) *Client { return c.addParamInt("offest", v) }
 
-// Cancel Order ID
-func (c *Client) OrderID(v int) *Client {
-	return addParamsAndReturnClient(c, "id", v)
-}
+// OrderID Cancel
+func (c *Client) OrderID(v int) *Client { return c.addParamInt("id", v) }
 
-// Transactions Sort
-func (c *Client) Sort(v string) *Client {
-	c.params.Add("sort", v)
-	return c
-}
+// OrderMethod Buy or Sell
+func (c *Client) OrderMethod(v int) *Client { return c.addParamInt("OrderMethod", v) }
 
-// Buy or Sell OrderMethod
-func (c *Client) OrderMethod(orderMethod int) *Client {
-	c.params.Add("OrderMethod", strconv.Itoa(orderMethod))
-	return c
-}
+// PricePrecision Buy or Sell
+func (c *Client) PricePrecision(v int) *Client { return c.addParamPrecision("PricePrecision", v) }
 
-// Buy or Sell PricePrecision
-func (c *Client) PricePrecision(v int) *Client {
-	c.params.Add("PricePrecision", fmt.Sprintf("%03d", v))
-	return c
-}
+// Amount Buy or Sell
+func (c *Client) Amount(v int) *Client { return c.addParamInt("Amount", v) }
 
-// Buy or Sell Amount
-func (c *Client) Amount(v int) *Client {
-	c.params.Add("Amount", strconv.Itoa(v))
-	return c
-}
+// AmountPrecision Buy or Sell
+func (c *Client) AmountPrecision(v int) *Client { return c.addParamPrecision("AmountPrecision", v) }
 
-// Buy or Sell AmountPrecision
-func (c *Client) AmountPrecision(v int) *Client {
-	c.params.Add("AmountPrecision", fmt.Sprintf("%03d", v))
-	return c
-}
+// Total Buy or Sell
+func (c *Client) Total(v int) *Client { return c.addParamInt("Total", v) }
 
-// Buy or Sell Total
-func (c *Client) Total(v int) *Client {
-	c.params.Add("Total", strconv.Itoa(v))
-	return c
-}
+// TotalPrecision Buy or Sell
+func (c *Client) TotalPrecision(v int) *Client { return c.addParamPrecision("TotalPrecision", v) }
 
-// Buy or Sell TotalPrecision
-func (c *Client) TotalPrecision(v int) *Client {
-	c.params.Add("TotalPrecision", fmt.Sprintf("%03d", v))
-	return c
-}
+// TriggerPrice Buy or Sell
+func (c *Client) TriggerPrice(v int) *Client { return c.addParamInt("TriggerPrice", v) }
 
-// Buy or Sell TriggerPrice
-func (c *Client) TriggerPrice(v int) *Client {
-	c.params.Add("TriggerPrice", strconv.Itoa(v))
-	return c
-}
+// Price Buy or Sell
+func (c *Client) Price(v int) *Client { return c.addParamInt("Price", v) }
 
-// Buy or Sell TriggerPricePrecision
-func (c *Client) TriggerPricePrecision(v int) *Client {
-	c.params.Add("TriggerPricePrecision", fmt.Sprintf("%03d", v))
-	return c
-}
+// Last Trades, OHCL Data Params (Not required)
+func (c *Client) Last(v int) *Client { return c.addParamInt("last", v) }
 
-// (Buy or Sell), Open Orders, Trades, Order Book must be PairSymbol Params
+// PairSymbol must be (Buy or Sell), Open Orders, Trades, Order Book
 func (c *Client) PairSymbol(v string) *Client {
 	c.params.Add("PairSymbol", v)
 	return c
 }
 
-// Buy or Sell Price
-func (c *Client) Price(v int) *Client {
-	c.params.Add("Price", strconv.Itoa(v))
+// TriggerPricePrecision Buy or Sell
+func (c *Client) TriggerPricePrecision(v int) *Client {
+	return c.addParamPrecision("TriggerPricePrecision", v)
+}
+
+// Sort Transactions
+func (c *Client) Sort(v string) *Client {
+	c.params.Add("sort", v)
 	return c
 }
 
-// Trades, OHCL Data Params (Not required)
-func (c *Client) Last(v int) *Client {
-	c.params.Add("last", strconv.Itoa(v))
-	return c
-}
-
-func addParamsAndReturnClient(c *Client, key string, value int) *Client {
+func (c *Client) addParamInt(key string, value int) *Client {
 	c.params.Add(key, strconv.Itoa(value))
+	return c
+}
+
+func (c *Client) addParamPrecision(key string, value int) *Client {
+	c.params.Add(key, fmt.Sprintf("%03d", value))
 	return c
 }
