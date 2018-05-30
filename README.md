@@ -59,8 +59,8 @@ func main() {
         TotalPrecision(00).
         Buy()
 }
-
-```
+328KptEkgzEGuQtNNiERrPnkzfyUpDAcbn 
+`
 
 ## Notes
  - you can get your private/public key peer from your account
